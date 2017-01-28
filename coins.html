@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Coins</title>
+</head>
+
+<body>
+	<p id="init"></p>
+	<p id="number"></p>
+	<p id="result"></p>
+	<p id="test"></p>
+	<p id="test2"></p>
+
+	<script>
+		var n = 39;
+  		var mass = [1,2,5,7,10,13,20];
+  		var massStr = ["1", "2", "5", "7", "10", "13", "20"];
+  		document.getElementById("init").innerHTML = "Init array: " + mass.join(", ");
+  		document.getElementById("number").innerHTML = "Sum: " + n;
+  		function findSum(mass, massStr, n) {
+  			if (n<1) {
+  				return document.getElementById("result").innerHTML = "Error";
+	  		}
+	  		else if (mass.includes(n) == true) {
+	  			return document.getElementById("result").innerHTML = n;
+	  		}
+	  		else {
+	  			while (true) {
+	  				var size = mass.length;
+		  			for (var i=0; i<size; ++i) {
+		  				for (var j=i; j<size; ++j) {
+		  					if (mass.includes(mass[i] + mass[j]) == false) {
+		  						mass.push(mass[i] + mass[j]);
+		  						massStr.push(massStr[i] + "+" + massStr[j]);
+		  					}
+		  					if (n == mass[i] + mass[j]) {
+		  						return document.getElementById("result").innerHTML = "Result: " + massStr[i] + "+" + massStr[j];
+		  					}
+		  				}
+		  			}
+		  		}
+	  		}
+  		}
+  		findSum(mass, massStr, n);			
+  </script>
+</body>
+</html>
